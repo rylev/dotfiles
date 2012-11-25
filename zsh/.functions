@@ -1,0 +1,5 @@
+### Functions File ###
+
+function gc(){
+  git commit -avm "$*"
+}

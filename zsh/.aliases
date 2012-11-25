@@ -1,0 +1,56 @@
+### Aliases File ###
+
+## General
+alias mkdir="mkdir -p"
+alias h="history"
+alias load="source"
+alias g="git"
+alias v="vim"
+alias s="subl"
+alias ss="subl ."
+alias o="open"
+alias oo="open ."
+
+## General Navigation
+alias cdd="cd -"
+alias o="open"
+alias 2..="cd ../.."
+alias 3..="cd ../../.."
+alias db="cd ~/Documents/Dropbox"
+alias dl="cd ~/Downloads"
+alias dt="cd ~/Desktop"
+alias st="cd ~/Sites"
+
+
+## Project Specific Navigation
+alias wlapi="cd ~/Sites/work/wunderapi"
+alias wlweb="cd ~/Sites/work/wunderlist\ clients/wunderlist-web-2.0"
+alias work="cd ~/Sites/work"
+alias personal="cd ~/Sites/personal"
+alias wjson="cd ~/Sites/work/wunderjson"
+
+## Editor
+alias subl="/Applications/Sublime\\ Text\\ 2.app/Contents/SharedSupport/bin/subl"
+
+## Configurations
+alias zsh="vi ~/.zshrc && source ~/.zshrc"
+alias ohmyzsh="vi ~/.oh-my-zsh"
+
+## Monitoring
+alias tcpu="top -o cpu"
+alias tmem="top -o vsize"
+
+## Git
+alias gpom="git push origin master"
+alias glom="git pull origin master"
+alias gcl="git clone"
+
+## Rails
+alias rmig="rake db:migrate"
+alias hell="rake to_hell"
+
+
+
+
+
+
