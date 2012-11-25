@@ -21,7 +21,6 @@ alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
 alias st="cd ~/Sites"
 
-
 ## Project Specific Navigation
 alias wlapi="cd ~/Sites/work/wunderapi"
 alias wlweb="cd ~/Sites/work/wunderlist\ clients/wunderlist-web-2.0"
@@ -33,8 +32,14 @@ alias wjson="cd ~/Sites/work/wunderjson"
 alias subl="/Applications/Sublime\\ Text\\ 2.app/Contents/SharedSupport/bin/subl"
 
 ## Configurations
-alias zsh="vi ~/.zshrc && source ~/.zshrc"
+alias zsh="vi ~/.dotfiles/zsh/"
+alias zali="vi ~/.dotfiles/zsh/.aliases"
+alias zconf="vi ~/.dotfiles/zsh/.config"
+alias zpers="vi ~/.dotfiles/zsh/.personal"
+alias zenv="vi ~/.dotfiles/zsh/.env"
+alias zfunc="vi ~/.dotfiles/zsh/.functions"
 alias ohmyzsh="vi ~/.oh-my-zsh"
+alias vimrc="vi ~/.dotfiles/vim/.vimrc"
 
 ## Monitoring
 alias tcpu="top -o cpu"
@@ -48,9 +53,3 @@ alias gcl="git clone"
 ## Rails
 alias rmig="rake db:migrate"
 alias hell="rake to_hell"
-
-
-
-
-
-

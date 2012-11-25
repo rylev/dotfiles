@@ -356,6 +356,7 @@ let g:ctrlp_map = '<leader>o'
 
 " NERDtree
 nmap <silent> <leader>p :NERDTreeToggle<cr>%
+let NERDTreeShowHidden=1
 
 " Surround
 " ,' switches ' and "
