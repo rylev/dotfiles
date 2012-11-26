@@ -225,6 +225,10 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
+" Add blank lines
+nmap [O O<Esc>j
+map [o o<Esc>k
+
 " Paste mode
 set pastetoggle=<F2>
 
