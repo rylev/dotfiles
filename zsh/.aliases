@@ -40,7 +40,7 @@ alias zenv="vi ~/.dotfiles/zsh/.env"
 alias zfunc="vi ~/.dotfiles/zsh/.functions"
 alias ohmyzsh="vi ~/.oh-my-zsh"
 alias vimrc="vi ~/.dotfiles/vim/.vimrc"
-alias reload=". ~/dotfiles/zsh/.zshrc"
+alias reload=". ~/.dotfiles/zsh/.zshrc"
 
 ## Monitoring
 alias tcpu="top -o cpu"

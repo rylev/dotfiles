@@ -151,7 +151,7 @@ set wildignore=.svn,CVS,.git,.hg,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jp
 set grepprg=ack " Use ack as regexp engine
 set textwidth=79 " Specify when the line will break
 set formatoptions=n " Specify how automatic formatting occurs
-set colorcolumn=79 " Highlight a column to mark when a line break should occur
+set colorcolumn=85 " Highlight a column to mark when a line break should occur
 set t_Co=256 " Number of colors used
 set iskeyword-=_
 
@@ -330,7 +330,8 @@ endfunction
 map <leader>t :call RunTestFile()<CR>
 map <leader>T :call RunNearestTest()<CR>
 
-" ----------------
+" SML REPL
+map <leader>s :! sml %<CR>
 " PLUG-IN SETTINGS
 " ----------------
 
