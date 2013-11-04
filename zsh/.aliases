@@ -22,7 +22,7 @@ alias dt="cd ~/Desktop"
 alias st="cd ~/Sites"
 
 ## Project Specific Navigation
-alias wlapi="cd ~/Sites/work/wunderapi"
+alias wlapi="cd ~/Sites/work/wunderapi/baseapi"
 alias wlweb="cd ~/Sites/work/wunderlist\ clients/wunderlist-web-2.0"
 alias work="cd ~/Sites/work"
 alias personal="cd ~/Sites/personal"
@@ -51,6 +51,17 @@ alias gpom="git push origin master"
 alias glom="git pull origin master"
 alias gcl="git clone"
 
+## Bundler
+alias be="bundle exec"
+
 ## Rails
 alias rmig="rake db:migrate"
 alias hell="rake to_hell"
+
+alias vagrant='nocorrect vagrant'
+alias npm='nocorrect npm'
+
+alias git='hub'
+alias irc='weechat-curses'
+
+alias wake='nocorrect wake'

@@ -89,10 +89,20 @@ Bundle 'msanders/snipmate.vim'
 " Easily navigate around a file
 Bundle 'Lokaltog/vim-easymotion'
 
-" Badwold (https://github.com/sjl/badwolf)
+" Badwolf (https://github.com/sjl/badwolf)
 " Cool color scheme for vim
 Bundle 'sjl/badwolf'
+
+" Vim scala
+Bundle 'derekwyatt/vim-scala'
+
+" Vim golang
+Bundle 'jnwhiteh/vim-golang'
 " Default color theme
+
+" Vim elixir
+Bundle 'elixir-lang/vim-elixir'
+
 colorscheme badwolf
 
 " ############################################################################
@@ -153,8 +163,8 @@ set textwidth=79 " Specify when the line will break
 set formatoptions=n " Specify how automatic formatting occurs
 set colorcolumn=85 " Highlight a column to mark when a line break should occur
 set t_Co=256 " Number of colors used
-set iskeyword-=_
-
+"set iskeyword-=_
+set clipboard=unnamedplus
 " Set some GUI options
 if has("gui_running")
     set guioptions-=T " no toolbar set guioptions-=m " no menus
@@ -294,7 +304,7 @@ function! RunTests(filename)
       elseif match(a:filename, '_test\.rb') != -1
         exec ":!ruby -I'lib:test' " . a:filename
       elseif match(a:filename, '_spec\.rb') != -1
-        exec ":!rspec --color --drb " . a:filename
+        exec ":!bundle exec rspec --color --drb " . a:filename
       end
     end
 endfunction
