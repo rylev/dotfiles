@@ -25,7 +25,6 @@ let maplocalleader = "."
 " Bundle:Ruby::Vundle:Vim
 Bundle 'gmarik/vundle'
 
-
 " Surround  (https://github.com/tpope/vim-surround)
 " Allows for easily editing paired characters (e.g. ')
 Bundle 'tpope/vim-surround'
@@ -66,8 +65,6 @@ Bundle 'kien/ctrlp.vim'
 " NerdTree (https://github.com/scrooloose/nerdtree)
 " Display a tree like file structure for navigating files
 Bundle 'scrooloose/nerdtree'
-" Open NerdTree automatically when opening new vim session
-autocmd vimenter * if !argc() | NERDTree | endif
 
 " Buffkill (https://github.com/hced/bufkill-vim)
 " Easily kill buffers
@@ -96,12 +93,21 @@ Bundle 'sjl/badwolf'
 " Vim scala
 Bundle 'derekwyatt/vim-scala'
 
+" Vim Elixir
+Bundle 'elixir-lang/vim-elixir'
+
 " Vim golang
-Bundle 'jnwhiteh/vim-golang'
+" Bundle 'fatih/vim-go'
 " Default color theme
 
-" Vim elixir
-Bundle 'elixir-lang/vim-elixir'
+" Vim clojure
+Bundle 'guns/vim-clojure-static'
+
+" Open file on a specifc file line
+Bundle 'bogado/file-line'
+
+" Vim Rust
+Bundle 'wting/rust.vim'
 
 colorscheme badwolf
 
@@ -182,6 +188,7 @@ autocmd FileType ruby,haml,eruby,yaml,html,javascript,sass,cucumber set ai sw=2 
 autocmd FileType python set sw=4 sts=4 et
 autocmd BufRead *.md  set ai formatoptions=tcroqn2 comments=n:&gt;
 autocmd BufRead *.markdown  set ai formatoptions=tcroqn2 comments=n:&gt;
+" Remove trailing whitespace
 autocmd BufWritePre * :%s/\s\+$//e
 
 " ############################################################################
@@ -382,6 +389,12 @@ let g:syntastic_check_on_open=1
 let g:syntastic_echo_current_error=1
 let g:syntastic_auto_jump=1
 let g:syntastic_auto_loc_list=1
+
+if expand("%:e") == 'elm'
+  set filetype=haskell
+  let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
+  nnoremap <C-w>E :SyntasticCheck<CR> :SyntasticToggleMode<CR> }
+endif
 
 " --------------------
 " CUSTOM CONFIGURATION

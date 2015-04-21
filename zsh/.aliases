@@ -47,21 +47,35 @@ alias tcpu="top -o cpu"
 alias tmem="top -o vsize"
 
 ## Git
+alias git='hub'
 alias gpom="git push origin master"
 alias glom="git pull origin master"
+alias gcr="git rev-parse HEAD | tr -d '\n'"
+alias gcb="git rev-parse --abbrev-ref HEAD | tr -d '\n'"
 alias gcl="git clone"
+alias gpo="git push origin"
+alias glo="git pull origin"
+alias gst="git status"
+alias gdf="git diff"
+alias gco="git checkout"
+alias gf="git fetch"
 
 ## Bundler
 alias be="bundle exec"
 
 ## Rails
-alias rmig="rake db:migrate"
-alias hell="rake to_hell"
+alias rdbm="bundle exec rake db:migrate"
+alias rdbd="bundle exec rake db:drop"
+alias rdbc="bundle exec rake db:create"
+alias rdbr="bundle exec rake db:drop; bundle exec rake db:create; bundle exec rake db:migrate; bundle exec rake db:test:prepare"
+alias berspec="bundle exec rspec"
 
+alias irc='weechat-curses'
+
+# No Correct
+alias wake='nocorrect wake'
+alias rspec='nocorrect rspec'
 alias vagrant='nocorrect vagrant'
 alias npm='nocorrect npm'
 
-alias git='hub'
-alias irc='weechat-curses'
-
-alias wake='nocorrect wake'
+alias wurl='curl -H "Content-Type: application/json" -H "X-Access-Token: $WLIST_ACCESS_TOKEN" -H "X-Client-ID: $WLIST_CLIENT_ID"'
