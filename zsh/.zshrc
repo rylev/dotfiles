@@ -3,7 +3,7 @@
 dotdir=${HOME}/.dotfiles
 zshdir=${dotdir}/zsh
 
-for file in ${zshdir}/.{aliases,config,env,personal,functions};
+for file in ${zshdir}/{aliases,config,env,personal,functions};
 do
   [ -r "$file" ] && source "$file"
 done
@@ -24,7 +24,7 @@ export PATH=$PATH:$GOPATH
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:/usr/local/opt/go/libexec/bin
 
-# added by travis gem
+# Added by travis gem
 [ -f /Users/ryanlevick/.travis/travis.sh ] && source /Users/ryanlevick/.travis/travis.sh
 
 # Android

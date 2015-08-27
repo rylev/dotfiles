@@ -8,106 +8,89 @@ set nocompatible
 " Turn off filetype detection. This is turned on again after plugins load
 filetype off
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+" Set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 " ----------
 " Leader key
 " ----------
 let mapleader = ","
-let maplocalleader = "."
 
 " ############################################################################
 " ################################BUNDLES#####################################
 " ############################################################################
 
-" Vundle (https://github.com/gmarik/vundle)
-" Bundle:Ruby::Vundle:Vim
-Bundle 'gmarik/vundle'
+" Plugin:Ruby::Vundle:Vim
+Plugin 'gmarik/vundle'
 
-" Surround  (https://github.com/tpope/vim-surround)
 " Allows for easily editing paired characters (e.g. ')
-Bundle 'tpope/vim-surround'
+Plugin 'tpope/vim-surround'
 
-" Endwise (https://github.com/tpope/vim-endwise)
 " Add 'end' to the end of statements where necesssary
-Bundle 'tpope/vim-endwise'
+Plugin 'tpope/vim-endwise'
 
-" Vim Rails (https://github.com/tpope/vim-rails)
-" Functionality for editing rails projects in Vim
-Bundle 'tpope/vim-rails'
-
-" Fugitive (https://github.com/tpope/vim-fugitive)
 " Git support inside of Vim
-Bundle 'tpope/vim-fugitive'
+Plugin 'tpope/vim-fugitive'
 
-
-" Ack (https://github.com/mileszs/ack.vim)
 " Search through files with Ack
-Bundle 'mileszs/ack.vim'
+Plugin 'mileszs/ack.vim'
 
-" Autoclose (https://github.com/Townk/vim-autoclose)
 " Automatically close paired charatcers like quotes
-Bundle 'Townk/vim-autoclose'
+Plugin 'Townk/vim-autoclose'
 
-" TComment (https://github.com/jmartindf/vim-tcomment)
 " Easily comment out code
-Bundle 'jmartindf/vim-tcomment'
+Plugin 'tomtom/tcomment_vim'
 
-" Powerline (https://github.com/Lokaltog/vim-powerline)
 " Add nice information bar to the bottom of the window
-Bundle 'Lokaltog/vim-powerline'
+Plugin 'Lokaltog/vim-powerline'
 
-" CtrlP (https://github.com/kien/ctrlp.vim)
 " Quickly find and open files
-Bundle 'kien/ctrlp.vim'
+Plugin 'kien/ctrlp.vim'
 
-" NerdTree (https://github.com/scrooloose/nerdtree)
 " Display a tree like file structure for navigating files
-Bundle 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdtree'
 
-" Buffkill (https://github.com/hced/bufkill-vim)
 " Easily kill buffers
-Bundle 'hced/bufkill-vim'
+Plugin 'mattdbridges/bufkill.vim'
 
-" Vim-Ruby (https://github.com/vim-ruby/vim-ruby)
 " Ruby support in Vim
-Bundle 'vim-ruby/vim-ruby'
+Plugin 'vim-ruby/vim-ruby'
 
-" Syntastic (https://github.com/scrooloose/syntastic)
 " Automagically check for syntax errors
-Bundle 'scrooloose/syntastic'
+Plugin 'scrooloose/syntastic'
 
-" Snipmate (https://github.com/msanders/snipmate.vim)
 " Textmate/Sublime like autocompletion
-Bundle 'msanders/snipmate.vim'
+Plugin 'msanders/snipmate.vim'
 
-" EasyMotion (https://github.com/Lokaltog/vim-easymotion)
 " Easily navigate around a file
-Bundle 'Lokaltog/vim-easymotion'
+Plugin 'Lokaltog/vim-easymotion'
 
-" Badwolf (https://github.com/sjl/badwolf)
 " Cool color scheme for vim
-Bundle 'sjl/badwolf'
+Plugin 'sjl/badwolf'
 
 " Vim scala
-Bundle 'derekwyatt/vim-scala'
+Plugin 'derekwyatt/vim-scala'
 
 " Vim Elixir
-Bundle 'elixir-lang/vim-elixir'
+Plugin 'elixir-lang/vim-elixir'
 
 " Vim golang
-" Bundle 'fatih/vim-go'
-" Default color theme
+" Plugin 'fatih/vim-go'
 
 " Vim clojure
-Bundle 'guns/vim-clojure-static'
+Plugin 'guns/vim-clojure-static'
 
 " Open file on a specifc file line
-Bundle 'bogado/file-line'
+Plugin 'bogado/file-line'
 
 " Vim Rust
-Bundle 'wting/rust.vim'
+Plugin 'wting/rust.vim'
+"
+"Vim Elm
+Plugin 'lambdatoast/elm.vim'
+
+call vundle#end()
 
 colorscheme badwolf
 
@@ -205,25 +188,6 @@ inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
 
-nnoremap j gj
-nnoremap k gk
-
-imap jk <ESC>
-nnoremap ; :
-
-" Search
-nmap <Space> /
-nnoremap / /\v
-vnoremap / /\v
-
-" Clear search
-nnoremap <leader><space> :noh<cr>
-
-" Saving and buffer stuff
-nmap <leader><ESC> :q!<CR>
-nmap <leader>q :wqa!<CR>
-nmap <leader>w :w!<CR>
-
 " Switch between / delete buffers
 noremap <tab> :bn<CR>
 noremap <S-tab> :bp<CR>
@@ -248,9 +212,6 @@ map [o o<Esc>k
 
 " Paste mode
 set pastetoggle=<F2>
-
-" Git blame
-vmap <Leader>gb :<C-U>!git blame <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p<CR>
 
 " Execute current buffer as ruby
 map <leader>r :!ruby -I"lib:test" %<cr>
@@ -362,10 +323,6 @@ nmap <leader>a :Ack
 map <C-n> :cn<CR>
 map <C-p> :cp<CR>
 
-" Fugitive (Git)
-nmap <leader>gs :Gstatus<CR>
-nmap <leader>gc :Gcommit<CR>
-
 " TComment
 map <Leader>co :TComment<CR>
 
@@ -389,17 +346,3 @@ let g:syntastic_check_on_open=1
 let g:syntastic_echo_current_error=1
 let g:syntastic_auto_jump=1
 let g:syntastic_auto_loc_list=1
-
-if expand("%:e") == 'elm'
-  set filetype=haskell
-  let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
-  nnoremap <C-w>E :SyntasticCheck<CR> :SyntasticToggleMode<CR> }
-endif
-
-" --------------------
-" CUSTOM CONFIGURATION
-" --------------------
-let my_home = expand("$HOME/")
-if filereadable(my_home . '.vimrc.local')
-  source ~/.vimrc.local
-endif
