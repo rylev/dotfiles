@@ -1,0 +1,7 @@
+# Load Configuration Files
+for file in $HOME/Code/dotfiles/zsh/{config,aliases,env,personal,functions};
+do
+  [ -r "$file" ] && source "$file"
+done
+
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi

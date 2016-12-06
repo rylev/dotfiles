@@ -1,0 +1,9 @@
+### Aliases File ###
+
+## General
+alias mkdir="mkdir -p"
+alias load="source"
+alias g="git"
+
+## Configurations
+alias reload=". ~/Code/dotfiles/zsh/.zshrc"

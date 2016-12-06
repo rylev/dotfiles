@@ -1,0 +1,11 @@
+### Environment ###
+#
+#
+## This file contains all options related to envrionment configuration
+## This is where environment variables (e.g. PATH) are generally set
+
+# Set the PATH environment variable
+export PATH=$PATH
+
+# Set default editor
+export EDITOR=vim
