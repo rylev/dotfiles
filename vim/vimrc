@@ -8,9 +8,7 @@ set nocompatible
 " Turn off filetype detection. This is turned on again after plugins load
 filetype off
 
-" Set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin('~/.local/share/nvim/plugged')
 
 " ----------
 " Leader key
@@ -21,76 +19,93 @@ let mapleader = ","
 " ################################BUNDLES#####################################
 " ############################################################################
 
-" Plugin:Ruby::Vundle:Vim
-Plugin 'gmarik/vundle'
+Plug 'gmarik/vundle'
 
 " Allows for easily editing paired characters (e.g. ')
-Plugin 'tpope/vim-surround'
+Plug 'tpope/vim-surround'
 
 " Add 'end' to the end of statements where necesssary
-Plugin 'tpope/vim-endwise'
+Plug 'tpope/vim-endwise'
 
 " Git support inside of Vim
-Plugin 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 
 " Search through files with Ack
-Plugin 'mileszs/ack.vim'
-
-" Automatically close paired charatcers like quotes
-Plugin 'Townk/vim-autoclose'
+Plug 'mileszs/ack.vim'
 
 " Easily comment out code
-Plugin 'tomtom/tcomment_vim'
+Plug 'tomtom/tcomment_vim'
 
 " Add nice information bar to the bottom of the window
-Plugin 'Lokaltog/vim-powerline'
+Plug 'Lokaltog/vim-powerline'
 
 " Quickly find and open files
-Plugin 'kien/ctrlp.vim'
+Plug 'kien/ctrlp.vim'
 
 " Display a tree like file structure for navigating files
-Plugin 'scrooloose/nerdtree'
-
-" Easily kill buffers
-Plugin 'mattdbridges/bufkill.vim'
+Plug 'scrooloose/nerdtree'
 
 " Ruby support in Vim
-Plugin 'vim-ruby/vim-ruby'
+Plug 'vim-ruby/vim-ruby'
 
 " Automagically check for syntax errors
-Plugin 'scrooloose/syntastic'
+Plug 'w0rp/ale'
 
 " Textmate/Sublime like autocompletion
-Plugin 'msanders/snipmate.vim'
+Plug 'msanders/snipmate.vim'
 
 " Easily navigate around a file
-Plugin 'Lokaltog/vim-easymotion'
+Plug 'Lokaltog/vim-easymotion'
 
 " Cool color scheme for vim
-Plugin 'sjl/badwolf'
+Plug 'sjl/badwolf'
 
 " Vim scala
-Plugin 'derekwyatt/vim-scala'
+Plug 'derekwyatt/vim-scala'
 
 " Vim Elixir
-Plugin 'elixir-lang/vim-elixir'
+Plug 'elixir-lang/vim-elixir'
 
 " Vim golang
-" Plugin 'fatih/vim-go'
+Plug 'fatih/vim-go'
 
 " Vim clojure
-Plugin 'guns/vim-clojure-static'
+Plug 'guns/vim-clojure-static'
 
 " Open file on a specifc file line
-Plugin 'bogado/file-line'
+Plug 'bogado/file-line'
 
 " Vim Rust
-Plugin 'wting/rust.vim'
-"
-"Vim Elm
-Plugin 'lambdatoast/elm.vim'
+Plug 'rust-lang/rust.vim'
+Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do':  'bash install.sh'}
+Plug 'ncm2/ncm2'
+Plug 'roxma/nvim-yarp'
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-tmux'
+Plug 'ncm2/ncm2-path'
 
-call vundle#end()
+"Vim Elm
+Plug 'lambdatoast/elm.vim'
+
+"TypeScript
+Plug 'Quramy/tsuquyomi'
+Plug 'Shougo/vimproc.vim'
+Plug 'leafgarland/typescript-vim'
+
+"Stylus
+Plug 'wavded/vim-stylus'
+
+"Android
+Plug 'hsanson/vim-android'
+Plug 'udalov/kotlin-vim'
+
+"Fsharp
+Plug 'fsharp/vim-fsharp', { 'for': 'fsharp',  'do':  'make fsautocomplete'}
+
+" Highlight Yanked Things
+Plug 'machakann/vim-highlightedyank'
+
+call plug#end()
 
 colorscheme badwolf
 
@@ -124,6 +139,8 @@ set laststatus=2 " Always show the status line
 set list " Show hidden characters
 set listchars=trail:·,tab:>- " Show trailing and tab characters
 set modelines=5
+set wrap " Wrap
+set linebreak " Adds visual linebreak
 set nobackup " Do not create a backup file when saving
 set noeol " Set last line to have special EOL character
 set nofoldenable " Open fold
@@ -148,7 +165,6 @@ set cursorline " Highlight the line the cursor is on
 set ttyfast " Improve performance of Vim
 set wildignore=.svn,CVS,.git,.hg,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif,.gitkeep " files to ignore for file name autocompletion
 set grepprg=ack " Use ack as regexp engine
-set textwidth=79 " Specify when the line will break
 set formatoptions=n " Specify how automatic formatting occurs
 set colorcolumn=85 " Highlight a column to mark when a line break should occur
 set t_Co=256 " Number of colors used
@@ -167,6 +183,7 @@ endif
 set guifont=Monaco:h12
 
 " Autocommands depending on file type
+autocmd FileType go setlocal noexpandtab shiftwidth=4 tabstop=4 softtabstop=4 nolist
 autocmd FileType ruby,haml,eruby,yaml,html,javascript,sass,cucumber set ai sw=2 sts=2 et
 autocmd FileType python set sw=4 sts=4 et
 autocmd BufRead *.md  set ai formatoptions=tcroqn2 comments=n:&gt;
@@ -212,9 +229,6 @@ map [o o<Esc>k
 
 " Paste mode
 set pastetoggle=<F2>
-
-" Execute current buffer as ruby
-map <leader>r :!ruby -I"lib:test" %<cr>
 
 " Tab autocompletes / indents depending on the context
 function! Smart_TabComplete()
@@ -326,10 +340,6 @@ map <C-p> :cp<CR>
 " TComment
 map <Leader>co :TComment<CR>
 
-" AutoClose
-let g:AutoClosePairs = {'(': ')', '{': '}', '[': ']', '"': '"', "'": "'", '#{': '}'}
-let g:AutoCloseProtectedRegions = ["Character"]
-
 " Ctrl-p
 let g:ctrlp_map = '<leader>o'
 
@@ -341,8 +351,44 @@ let NERDTreeShowHidden=1
 " ,' switches ' and "
 nnoremap <leader>' ""yls<c-r>={'"': "'", "'": '"'}[@"]<cr><esc>
 
-" Syntastic
-let g:syntastic_check_on_open=1
-let g:syntastic_echo_current_error=1
-let g:syntastic_auto_jump=1
-let g:syntastic_auto_loc_list=1
+" Racer
+let g:racer_cmd = "/Users/ryanlevick/.multirust/toolchains/stable/cargo/bin/racer"
+let $RUST_SRC_PATH="/Users/ryanlevick/Code/personal/rust/src"
+
+" TypeScript
+let g:tsuquyomi_disable_quickfix = 1
+autocmd FileType typescript nmap <buffer> <Leader>t : <C-u>echo tsuquyomi#hint()<CR>
+
+" Autocomplete
+autocmd BufEnter * call ncm2#enable_for_buffer()
+set completeopt=noinsert,menuone,noselect
+
+" language server
+let g:LanguageClient_settingsPath = "~/.config/nvim/settings.json"
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'nightly', 'rls'],
+    \ }
+let g:LanguageClient_autoStart = 1
+nnoremap <leader>lk :call LanguageClient#textDocument_hover()<CR>
+nnoremap <leader>lg :call LanguageClient#textDocument_definition()<CR>
+nnoremap <leader>lr :call LanguageClient#textDocument_rename()<CR>
+let g:rustfmt_command = "rustfmt +nightly"
+let g:rustfmt_autosave = 1
+let g:rustfmt_emit_files = 1
+let g:rustfmt_fail_silently = 0
+
+"python
+let g:python3_host_prog='/usr/local/bin/python3'
+let g:python_host_prog='/usr/local/bin/python3'
+
+" Ale (linter)
+let g:ale_sign_column_always = 1
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_enter = 0
+let g:ale_rust_cargo_use_check = 1
+let g:ale_rust_cargo_check_all_targets = 1
+
+" Permanent undo
+set undodir=~/.vimdid
+set undofile

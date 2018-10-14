@@ -1,5 +1,5 @@
 ### Functions File ###
 
-function open () {
-  xdg-open $1 &> /dev/null
+function gc(){
+  git commit -avm "$*"
 }
