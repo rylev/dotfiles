@@ -40,3 +40,7 @@ export OPENSSL_LIB_DIR=$SSL_PATH/lib
 
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
+
+# Wasmer
+export WASMER_DIR="$HOME/.wasmer"
+[ -s "$WASMER_DIR/wasmer.sh" ] && source "$WASMER_DIR/wasmer.sh"  # This loads wasmer

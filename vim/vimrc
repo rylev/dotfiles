@@ -351,10 +351,6 @@ let NERDTreeShowHidden=1
 " ,' switches ' and "
 nnoremap <leader>' ""yls<c-r>={'"': "'", "'": '"'}[@"]<cr><esc>
 
-" Racer
-let g:racer_cmd = "/Users/ryanlevick/.multirust/toolchains/stable/cargo/bin/racer"
-let $RUST_SRC_PATH="/Users/ryanlevick/Code/personal/rust/src"
-
 " TypeScript
 let g:tsuquyomi_disable_quickfix = 1
 autocmd FileType typescript nmap <buffer> <Leader>t : <C-u>echo tsuquyomi#hint()<CR>

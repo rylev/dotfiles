@@ -17,7 +17,7 @@ export PATH=/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/bin:/bin:/u
 [[ -s "$HOME/.nvm/nvm.sh" ]] && source "$HOME/.nvm/nvm.sh"
 
 # Set default editor
-export EDITOR=vim
+export EDITOR=nvim
 
 # Cargo
 source $HOME/.cargo/env
