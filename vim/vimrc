@@ -8,8 +8,6 @@ set nocompatible
 " Turn off filetype detection. This is turned on again after plugins load
 filetype off
 
-call plug#begin('~/.local/share/nvim/plugged')
-
 " ----------
 " Leader key
 " ----------
@@ -18,6 +16,8 @@ let mapleader = ","
 " ############################################################################
 " ################################BUNDLES#####################################
 " ############################################################################
+
+call plug#begin()
 
 Plug 'gmarik/vundle'
 
@@ -48,8 +48,8 @@ Plug 'scrooloose/nerdtree'
 " Ruby support in Vim
 Plug 'vim-ruby/vim-ruby'
 
-" Automagically check for syntax errors
-Plug 'w0rp/ale'
+" Ale: Automagically check for syntax errors
+Plug 'dense-analysis/ale'
 
 " Textmate/Sublime like autocompletion
 Plug 'msanders/snipmate.vim'
@@ -77,12 +77,9 @@ Plug 'bogado/file-line'
 
 " Vim Rust
 Plug 'rust-lang/rust.vim'
-Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do':  'bash install.sh'}
-Plug 'ncm2/ncm2'
-Plug 'roxma/nvim-yarp'
-Plug 'ncm2/ncm2-bufword'
-Plug 'ncm2/ncm2-tmux'
-Plug 'ncm2/ncm2-path'
+
+" Language Server
+Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh', }
 
 "Vim Elm
 Plug 'lambdatoast/elm.vim'
@@ -168,8 +165,7 @@ set grepprg=ack " Use ack as regexp engine
 set formatoptions=n " Specify how automatic formatting occurs
 set colorcolumn=85 " Highlight a column to mark when a line break should occur
 set t_Co=256 " Number of colors used
-"set iskeyword-=_
-set clipboard=unnamedplus
+" set clipboard=unnamedplus
 " Set some GUI options
 if has("gui_running")
     set guioptions-=T " no toolbar set guioptions-=m " no menus
@@ -355,20 +351,16 @@ nnoremap <leader>' ""yls<c-r>={'"': "'", "'": '"'}[@"]<cr><esc>
 let g:tsuquyomi_disable_quickfix = 1
 autocmd FileType typescript nmap <buffer> <Leader>t : <C-u>echo tsuquyomi#hint()<CR>
 
-" Autocomplete
-autocmd BufEnter * call ncm2#enable_for_buffer()
-set completeopt=noinsert,menuone,noselect
-
 " language server
-let g:LanguageClient_settingsPath = "~/.config/nvim/settings.json"
 let g:LanguageClient_serverCommands = {
-    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'nightly', 'rls'],
+    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
     \ }
 let g:LanguageClient_autoStart = 1
 nnoremap <leader>lk :call LanguageClient#textDocument_hover()<CR>
 nnoremap <leader>lg :call LanguageClient#textDocument_definition()<CR>
 nnoremap <leader>lr :call LanguageClient#textDocument_rename()<CR>
-let g:rustfmt_command = "rustfmt +nightly"
+nnoremap <leader>lh :call LanguageClient#textDocument_hover()<CR>
+let g:rustfmt_command = "cargo fmt"
 let g:rustfmt_autosave = 1
 let g:rustfmt_emit_files = 1
 let g:rustfmt_fail_silently = 0
@@ -386,5 +378,5 @@ let g:ale_rust_cargo_use_check = 1
 let g:ale_rust_cargo_check_all_targets = 1
 
 " Permanent undo
-set undodir=~/.vimdid
+set undodir=~/.vimundo
 set undofile

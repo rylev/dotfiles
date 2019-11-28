@@ -13,11 +13,5 @@ export PATH=/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/bin:/bin:/u
 # Set up rbenv
 [[ -d "$HOME/.rbenv" ]] && PATH="$HOME/.rbenv/bin:$PATH" && eval "$(rbenv init -)" && alias r="rbenv" && alias re="rbenv exec" ]]
 
-# Load NVM
-[[ -s "$HOME/.nvm/nvm.sh" ]] && source "$HOME/.nvm/nvm.sh"
-
-# Set default editor
-export EDITOR=nvim
-
 # Cargo
 source $HOME/.cargo/env

@@ -1,46 +1,19 @@
 # Load Configuration Files
 
-dotdir=${HOME}/Code/personal/dotfiles
-zshdir=${dotdir}/zsh
+dotdir="$HOME/Code/personal/dotfiles"
+zshdir="$dotdir/zsh"
 
 for file in ${zshdir}/{config,env,personal,functions,aliases};
 do
   [ -r "$file" ] && source "$file"
 done
 
-# if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
-export PATH="/Users/ryanlevick/Library/Haskell/bin:$PATH"
-export PATH="${PATH}:/Users/ryanlevick/bin/activator"
-export PATH="${PATH}:/Users/ryanlevick/bin/aws/bin/aws"
-export PATH="${PATH}:/Applications/Postgres93.app/Contents/MacOS/bin"
-export PATH="${PATH}:/Library/Frameworks/Mono.framework/Versions/Current/bin/"
-
-## GO PATH
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOPATH
-export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:/usr/local/go/bin
-
-# Android
-export ANDROID_HOME=/Users/ryanlevick/Library/Android/sdk
-
-# Cargo
-export PATH="${PATH}:~/.multirust/toolchains/stable/cargo/bin/"
+# Path modifications
+export PATH="/usr/local/bin:~/.nvm:${PATH}"
 
 # nvm
-export NVM_DIR=~/.nvm
-. /usr/local/opt/nvm/nvm.sh --no-use
-
-# Open SSL
-SSL_PATH=`brew --prefix openssl`
-export OPENSSL_INCLUDE_DIR=$SSL_PATH/include
-export OPENSSL_LIB_DIR=$SSL_PATH/lib
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
-
-# Wasmer
-export WASMER_DIR="$HOME/.wasmer"
-[ -s "$WASMER_DIR/wasmer.sh" ] && source "$WASMER_DIR/wasmer.sh"  # This loads wasmer
