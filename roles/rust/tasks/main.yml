@@ -1,13 +1,13 @@
 ---
 
-- name: check if cargo is installed
+- name: Check if Cargo is installed
   shell: |
     test -f ~/.cargo/env && . ~/.cargo/env && command -v cargo
   become_user: rylev
   register: cargo_exists
-  ignore_errors: yes
+  changed_when: cargo_exists is failed
 
-- name: Download Installer
+- name: Download installer
   when: cargo_exists is failed
   get_url:
     url: https://sh.rustup.rs
@@ -15,8 +15,17 @@
     mode: '0755'
     force: 'yes'
 
-- name: install rust/cargo
+- name: Install Rust/Cargo
   when: cargo_exists is failed
   shell: /tmp/sh.rustup.rs -y
   become_user: rylev
+
+- name: Install cargo binaries
+  include_tasks: "cargo_install.yml"
+  loop:
+     - cargo-expand
+     - tokei
+     - cargo-outdated
+     - fclones
+     - jql
 

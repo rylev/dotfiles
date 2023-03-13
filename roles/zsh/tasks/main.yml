@@ -3,14 +3,24 @@
 - name: Check zsh installation
   shell: which zsh
   register: zsh
+  changed_when: zsh.rc == 1
+  failed_when: zsh.rc > 1
 
 - name: Install zsh
   package:
     name: zsh
   when: zsh.rc != 0
 
+- name: Find current default shell
+  shell: sudo grep "^${USER}.*zsh$" /etc/passwd
+  become_user: rylev
+  register: default_shell
+  changed_when: default_shell.rc == 1
+  failed_when: default_shell.rc > 1
+
 - name: Make default shell
   shell: chsh -s $(which zsh)
+  when: default_shell.rc == 1
 
 - name: Check if .oh-my-zsh installed
   stat:

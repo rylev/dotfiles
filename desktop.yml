@@ -3,6 +3,8 @@
   roles:
     - role: common
       become: true
+    - role: git
+      become: true
     - role: rust
       become: true
     - role: zsh
@@ -12,4 +14,8 @@
     - role: ssh
       become: true
     - role: vim
+      become: true
+    - role: vscodium
+      become: true
+    - role: abricotine
       become: true

@@ -19,6 +19,9 @@
      - exa
      - vim
      - xclip
+     - fd-find
+     - ripgrep
+     - peco
     state: latest
 
 # bat is installed as batcat in apt
@@ -26,4 +29,11 @@
   file:
     src: /usr/bin/batcat
     dest: /usr/bin/bat
+    state: link
+
+# fd is installed as fdfind in apt
+- name: Create fd alias for fdfind
+  file:
+    src: /usr/bin/fdfind
+    dest: /usr/bin/fd
     state: link

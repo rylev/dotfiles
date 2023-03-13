@@ -1,0 +1,21 @@
+---
+
+- name: Check if abricotine is installed
+  command: dpkg-query -W abricotine
+  register: abricotine
+  failed_when: abricotine.rc > 1
+  changed_when: abricotine.rc == 1
+
+- name: Download my_package
+  get_url: 
+    url: "{{ url }}"
+    dest: /tmp/abricotine.deb
+  when: abricotine.rc == 1
+  vars:
+    url: https://github.com/brrd/abricotine/releases/download/v1.1.4/abricotine_1.1.4_amd64.deb
+
+- name: Install abricotine
+  apt: 
+    deb: /tmp/abricotine.deb
+  become: true
+  when: abricotine.rc == 1

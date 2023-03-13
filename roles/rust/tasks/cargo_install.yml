@@ -1,0 +1,13 @@
+---
+
+- name: "Check if {{ item }} is installed"
+  shell: "which {{ item }}"
+  become_user: rylev
+  register: installed
+  changed_when: installed.rc == 1
+  failed_when: installed.rc > 1
+
+- name: "Install {{ item }}"
+  shell: "cargo install {{ item }} --force"
+  become_user: rylev
+  when: installed is changed
