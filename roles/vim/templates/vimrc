@@ -1,0 +1,125 @@
+" Vimrc
+" Author: Ryan Levick
+" Thanks to: Codegram
+" Source: https://github.com/codegram/vimfiles
+
+" Set this vimrc file to not be compatible with vi
+set nocompatible
+" Turn off filetype detection. This is turned on again after plugins load
+filetype off
+
+" ----------
+" Leader key
+" ----------
+let mapleader = ","
+
+" ############################################################################
+" ##############################VIM SETTINGS##################################
+" ############################################################################
+
+" Turn on syntax highlighting
+syntax on
+" Turn on filetype detection and indentation from plugin
+filetype plugin indent on
+
+set encoding=utf-8
+set autoread " Autoread checks for changes to file from outside of Vim
+set backspace=indent,eol,start " Set backspace key to respond to the options
+set completeopt=menuone,preview " Set completion menu settings
+set expandtab " Convert tabs to spaces
+set foldcolumn=0 " Disable the fold column (Column showing folded code)
+set foldlevel=9 " All folds are open be default
+set foldmethod=syntax " Fold by syntax
+set hidden " Hide buffers instead of closing them
+set history=1000 " Set history length
+set hlsearch " Highlight search terms
+set ignorecase " Ignore case in search
+set incsearch " Allow for incremental search
+set gdefault " Allow global search and replace
+set laststatus=2 " Always show the status line
+set list " Show hidden characters
+set listchars=trail:·,tab:>- " Show trailing and tab characters
+set modelines=5
+set wrap " Wrap
+set linebreak " Adds visual linebreak
+set nobackup " Do not create a backup file when saving
+set noeol " Set last line to have special EOL character
+set nofoldenable " Open fold
+set noswapfile " No swap files. Keep it all in the buffer, baby
+set number " Set line numbers
+set numberwidth=4 " Set line number column width
+set shell=/bin/bash " Set shell to Bash
+set shiftwidth=2 " Number of spaces for an indent
+set showcmd " Show command at the bottom of the screen
+set smartcase " Use smartcase detection in search
+set tabstop=2 " Number of spaces tab counts for
+set softtabstop=2 " Number of spaces softtab counts for
+set title " Set title bar value
+set scrolloff=3 " Set number of lines always kept above or below the cursor
+set autoindent " Copy indent from current line to new line
+set smartindent " Auto indent in a smart way
+set showmode " Show when in Insert and Visual mode
+set wildmenu " Turn on wild mode for autocompletion of command line commands
+set wildmode=list:longest
+set visualbell
+set cursorline " Highlight the line the cursor is on
+set ttyfast " Improve performance of Vim
+set wildignore=.svn,CVS,.git,.hg,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif,.gitkeep " files to ignore for file name autocompletion
+set grepprg=ack " Use ack as regexp engine
+set formatoptions=n " Specify how automatic formatting occurs
+set colorcolumn=85 " Highlight a column to mark when a line break should occur
+set t_Co=256 " Number of colors used
+
+" Autocommands depending on file type
+autocmd FileType go setlocal noexpandtab shiftwidth=4 tabstop=4 softtabstop=4 nolist
+autocmd FileType ruby,haml,eruby,yaml,html,javascript,sass,cucumber set ai sw=2 sts=2 et
+autocmd FileType python set sw=4 sts=4 et
+autocmd BufRead *.md  set ai formatoptions=tcroqn2 comments=n:&gt;
+autocmd BufRead *.markdown  set ai formatoptions=tcroqn2 comments=n:&gt;
+" Remove trailing whitespace
+autocmd BufWritePre * :%s/\s\+$//e
+
+" ############################################################################
+" #################################MAPPINGS###################################
+" ############################################################################
+
+" Disable the arrow keys for MOAR discipline
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+
+" Switch between / delete buffers
+noremap <tab> :bn<CR>
+noremap <S-tab> :bp<CR>
+nmap <leader>d :bd<CR>
+nmap <leader>D :bufdo bd<CR>
+nmap <silent> <leader>b :CtrlPBuffer<CR>
+
+" Tab to indent in visual mode
+vmap <Tab> >gv
+vmap <S-tab> <gv
+
+" Splits
+nnoremap <leader>v :vs<CR> <C-w>l
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+" Add blank lines
+nmap [O O<Esc>j
+map [o o<Esc>k
+
+" Paste mode
+set pastetoggle=<F2>
+
+" Permanent undo
+set undodir=~/.vimundo
+set undofile
+
+

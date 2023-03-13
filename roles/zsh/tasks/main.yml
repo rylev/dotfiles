@@ -1,0 +1,50 @@
+---
+
+- name: Check zsh installation
+  shell: which zsh
+  register: zsh
+
+- name: Install zsh
+  package:
+    name: zsh
+  when: zsh.rc != 0
+
+- name: Make default shell
+  shell: chsh -s $(which zsh)
+
+- name: Check if .oh-my-zsh installed
+  stat:
+    path: "{{ lookup('env', 'HOME') }}/.oh-my-zsh"
+  become_user: rylev
+  become: true
+  register: oh_my_zsh
+
+- name: Install oh-my-zsh
+  shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+  become_user: rylev
+  when: not oh_my_zsh.stat.exists
+
+- name: Configure zsh
+  template:
+    src: zshrc
+    dest: "{{ lookup('env', 'HOME') }}/.zshrc"
+
+- name: ensures .zsh dir exists
+  file:
+    path: "{{ lookup('env', 'HOME') }}/.zsh"
+    state: directory
+
+- name: Configure zsh config
+  template:
+    src: config
+    dest: "{{ lookup('env', 'HOME') }}/.zsh/config"
+
+- name: Configure zsh env
+  template:
+    src: env
+    dest: "{{ lookup('env', 'HOME') }}/.zsh/env"
+
+- name: Configure zsh aliases
+  template:
+    src: aliases
+    dest: "{{ lookup('env', 'HOME') }}/.zsh/aliases"

@@ -1,0 +1,27 @@
+---
+
+- name: Install SSH Server
+  apt:
+    pkg: openssh-server
+    state: latest
+
+- name: Allow password authentication"
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: "^PasswordAuthentication"
+    line: PasswordAuthentication yes
+    state: present
+
+- name: Allow root SSH access
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: "^PermitRootLogin"
+    line: PermitRootLogin yes
+    state: present
+
+- name: Ensure sshd is started
+  service:
+    name: ssh
+    state: restarted
+    enabled: true
+

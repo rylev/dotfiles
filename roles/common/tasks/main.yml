@@ -1,0 +1,29 @@
+---
+
+
+- name: Update apt-get repo and cache
+  apt:
+    update_cache: yes
+
+- name: Install common packages
+  package:
+    name:
+     - htop
+     - ncdu
+     - build-essential
+     - cmake
+     - libssl-dev
+     - pkg-config
+     - awscli
+     - bat
+     - exa
+     - vim
+     - xclip
+    state: latest
+
+# bat is installed as batcat in apt
+- name: Create bat alias for batcat
+  file:
+    src: /usr/bin/batcat
+    dest: /usr/bin/bat
+    state: link

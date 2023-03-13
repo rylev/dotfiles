@@ -1,0 +1,4 @@
+for file in $HOME/.zsh/{config,env,aliases};
+do
+  [ -r "$file" ] && source "$file"
+done

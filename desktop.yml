@@ -1,0 +1,15 @@
+- name: Ubuntu Playbook Initialization
+  hosts: localhost
+  roles:
+    - role: common
+      become: true
+    - role: rust
+      become: true
+    - role: zsh
+      become: true
+    - role: 1password
+      become: true
+    - role: ssh
+      become: true
+    - role: vim
+      become: true

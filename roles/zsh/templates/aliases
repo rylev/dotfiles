@@ -1,0 +1,7 @@
+### Aliases File ###
+
+alias mkdir="mkdir -p"
+alias h="history"
+alias g="git"
+alias ls="exa"
+alias copy="xclip -sel clip"
