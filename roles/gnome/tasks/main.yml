@@ -1,0 +1,24 @@
+---
+
+- name: Install useful gnome packages
+  package:
+    name:
+     - gnome-sushi
+    state: latest
+
+- name: Install psutil python package which the dconf module relies on
+  pip:
+    name: psutil
+    state: present
+
+- name: Configure available keyboard layouts in Gnome
+  dconf:
+    key: "/org/gnome/desktop/input-sources/sources"
+    value: "[('xkb', 'us'), ('xkb', 'de')]"
+    state: present
+
+- name: Switch caps lock to being another ctrl
+  dconf:
+    key: "/org/gnome/desktop/input-sources/xkb-options"
+    value: "['caps:ctrl_modifier']"
+    state: present
