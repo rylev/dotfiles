@@ -1,0 +1,5 @@
+#! /bin/sh
+
+export CARGO_TARGET_DIR=/home/rylev/.cargo_target
+cargo sweep --installed
+cargo sweep --time 30 #days

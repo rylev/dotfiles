@@ -1,0 +1,32 @@
+---
+
+- name: Create local cron weekly directory
+  file:
+    path: "{{ lookup('env', 'HOME') }}/.local/etc/cron.weekly"
+    state: directory
+    owner: rylev
+    group: rylev
+    mode: '0755'
+
+- name: Put local anacrontab in place
+  template:
+    src: anacrontab
+    dest: "{{ lookup('env', 'HOME') }}/.local/etc/anacrontab"
+
+- name: Create local state for anacrontab to use
+  file:
+    path: "{{ lookup('env', 'HOME') }}/.var/spool/anacron"
+    state: directory
+    owner: rylev
+    group: rylev
+    mode: '0755'
+
+- name: Put cleanup file in weekly cron
+  template:
+    src: cargo_cleanup
+    # Note that anacron does not run any file that has a file extension
+    dest: "{{ lookup('env', 'HOME') }}/.local/etc/cron.weekly/cargo_cleanup"
+    mode: "0755"
+
+# TODO: ensure that `anacron -t ~/.local/etc/anacrontab -S ~/.var/spool/anacron` gets
+# run so that the anacrontab is registered

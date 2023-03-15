@@ -22,6 +22,10 @@
      - fd-find
      - ripgrep
      - peco
+     - cifs-utils        # mounting fileshares
+     - nmap              # mapping networks
+     - flatpak
+     - anacron
     state: latest
 
 # bat is installed as batcat in apt

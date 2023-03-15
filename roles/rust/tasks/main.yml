@@ -24,8 +24,9 @@
   include_tasks: "cargo_install.yml"
   loop:
      - cargo-expand
-     - tokei
+     - cargo-sweep
      - cargo-outdated
+     - tokei
      - fclones
      - jql
-
+     - choose

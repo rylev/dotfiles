@@ -1,0 +1,3 @@
+SHELL=/bin/sh
+PATH=/sbin:/bin:/usr/sbin:/usr/bin:/home/rylev/.cargo/bin
+7  0  cron.weekly    run-parts /home/rylev/.local/etc/cron.weekly/

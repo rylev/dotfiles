@@ -12,3 +12,11 @@ if ! hash ansible >/dev/null 2>&1; then
 else
     echo "Ansible already installed"
 fi
+
+
+if ! ansible-galaxy collection list | grep -i community.general >/dev/null 2>&1; then
+    echo "Installing community.general ansible package"
+    ansible-galaxy collection install community.general
+else
+    echo "community.general ansible package already installed"
+fi

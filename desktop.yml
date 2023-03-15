@@ -19,3 +19,7 @@
       become: true
     - role: abricotine
       become: true
+    - role: vlc
+      become: true
+    - role: cron
+      become: true
