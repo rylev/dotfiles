@@ -1,5 +1,7 @@
 ---
 
+# SSH server configuration
+
 - name: Install SSH Server
   apt:
     pkg: openssh-server
@@ -25,3 +27,18 @@
     state: started
     enabled: true
 
+# SSH client configuration
+
+- name: Create .ssh directory
+  file:
+    path: ~/.ssh
+    state: directory
+    mode: '0700'
+
+- name: Generate key pair
+  openssh_keypair:
+    path: ~/.ssh/id_ed25519
+    type: ed25519
+    owner: rylev
+    group: rylev
+    state: present
