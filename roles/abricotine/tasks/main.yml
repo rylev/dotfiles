@@ -7,7 +7,7 @@
   changed_when: abricotine.rc == 1
 
 - name: Download my_package
-  get_url: 
+  get_url:
     url: "{{ url }}"
     dest: /tmp/abricotine.deb
   when: abricotine.rc == 1
@@ -15,7 +15,7 @@
     url: https://github.com/brrd/abricotine/releases/download/v1.1.4/abricotine_1.1.4_amd64.deb
 
 - name: Install abricotine
-  apt: 
+  apt:
     deb: /tmp/abricotine.deb
   become: true
   when: abricotine.rc == 1

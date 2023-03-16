@@ -1,13 +1,13 @@
 ---
 
-- name: Add name to git config 
+- name: Add name to git config
   git_config:
     name: user.name
     value: "Ryan Levick"
     scope: global
   become_user: rylev
 
-- name: Add email to git config 
+- name: Add email to git config
   git_config:
     name: user.email
     value: "me@ryanlevick.com"
