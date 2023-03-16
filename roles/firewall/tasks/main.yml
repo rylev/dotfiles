@@ -1,0 +1,25 @@
+---
+
+- name: Install ufw
+  apt:
+    name: ufw
+    state: present
+
+- name: Allow incoming SSH traffic
+  ufw:
+    rule: allow
+    direction: in
+    proto: tcp
+    port: ssh
+    src: 192.168.2.0/24
+
+- name: Allow all outgoing traffic
+  ufw:
+    direction: outgoing
+    policy: allow
+
+- name: Enable firewall
+  ufw:
+    state: enabled
+    policy: deny
+    direction: incoming
