@@ -22,3 +22,9 @@
     key: "/org/gnome/desktop/input-sources/xkb-options"
     value: "['caps:ctrl_modifier']"
     state: present
+
+- name: Set to 24 hour clock
+  dconf:
+    key: "/org/gnome/desktop/interface/clock-format"
+    value: "'24h'"
+    state: present

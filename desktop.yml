@@ -25,3 +25,5 @@
       become: true
     - role: firewall
       become: true
+    - role: gnome
+      become: true

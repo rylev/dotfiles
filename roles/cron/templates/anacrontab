@@ -1,3 +1,5 @@
 SHELL=/bin/sh
 PATH=/sbin:/bin:/usr/sbin:/usr/bin:/home/rylev/.cargo/bin
+START_HOURS_RANGE=6-8
+RANDOM_DELAY=3
 7  0  cron.weekly    run-parts /home/rylev/.local/etc/cron.weekly/

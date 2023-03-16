@@ -10,3 +10,9 @@ source $HOME/.cargo/env
 export CARGO_TARGET_DIR=/home/rylev/.cargo_target
 
 export EDITOR="vim"
+
+# My particular combination of locale settings
+export LC_NUMERIC=en_GB.UTF-8
+export LC_TIME=de_DE.UTF-8
+export LC_MONETARY=de_DE.UTF-8
+export LC_PAPER=en_GB.UTF-8
