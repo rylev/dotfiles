@@ -27,3 +27,7 @@
       become: true
     - role: gnome
       become: true
+    - role: discord
+      become: true
+    - role: docker
+      become: true
