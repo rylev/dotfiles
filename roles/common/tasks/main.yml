@@ -26,6 +26,7 @@
      - nmap              # mapping networks
      - flatpak
      - anacron
+     - nala
     state: latest
 
 # bat is installed as batcat in apt
