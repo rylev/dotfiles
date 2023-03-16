@@ -7,6 +7,7 @@
 
 - name: Add 1Password apt repo
   apt_repository:
+    filename: 1password
     repo: "deb https://downloads.1password.com/linux/debian/amd64 stable main"
     state: present
 
