@@ -1,5 +1,9 @@
 ---
 
+- name: Set a hostname
+  hostname:
+    name: milton
+
 - name: Update apt-get repo and cache
   become: true
   apt:

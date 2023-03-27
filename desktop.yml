@@ -31,3 +31,5 @@
       become: true
     - role: docker
       become: true
+    - role: nvm
+      become: true
