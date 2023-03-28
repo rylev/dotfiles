@@ -1,5 +1,7 @@
 ---
 
+- include_tasks: boxes.yml
+
 - name: Install useful gnome packages
   package:
     name:

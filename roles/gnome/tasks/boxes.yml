@@ -1,0 +1,12 @@
+---
+
+- name: Install Boxes flatpak
+  community.general.flatpak:
+    name: org.gnome.Boxes
+    state: present
+
+- name: Add user to kvm group
+  user:
+    name: rylev
+    groups: kvm
+    append: yes

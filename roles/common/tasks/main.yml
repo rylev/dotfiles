@@ -8,6 +8,7 @@
   become: true
   apt:
     update_cache: yes
+  when: ansible_os_family == 'Debian'
 
 - name: Install common packages
   become: true
@@ -19,31 +20,55 @@
      - cmake
      - libssl-dev
      - pkg-config
+     - vim
+     - nmap
      - awscli
      - bat
      - exa
-     - vim
-     - xclip
-     - fd-find
      - ripgrep
      - peco
-     - cifs-utils        # mounting fileshares
-     - nmap              # mapping networks
-     - flatpak
-     - anacron
-     - nala
     state: latest
 
-# bat is installed as batcat in apt
-- name: Create bat alias for batcat
+- name: Install debian specific packages
+  become: true
+  package:
+    name:
+     - xclip
+     - anacron
+     - flatpak
+     - nala
+     - cifs-utils
+    state: latest
+  when: ansible_os_family == 'Debian'
+
+# fd is `fd-find` on apt
+- name: Install fd
+  apt:
+    name: "{{ package_name }}"
+    state: latest
+  vars:
+    package_name: "{{ 'fd-find' if ansible_os_family == 'Debian' else 'fd' }}"
+
+- name: Ensure local bin directory exists
   file:
-    src: /usr/bin/batcat
-    dest: /usr/bin/bat
-    state: link
+    path: "{{ ansible_env.HOME }}/.local/bin"
+    state: directory
+    recurse: yes
+    owner: rylev
+    group: rylev
 
 # fd is installed as fdfind in apt
 - name: Create fd alias for fdfind
   file:
     src: /usr/bin/fdfind
-    dest: /usr/bin/fd
+    dest: "{{ ansible_env.HOME }}/.local/bin/fd"
     state: link
+  when: ansible_os_family == 'Debian'
+
+# bat is installed as batcat in apt
+- name: Create bat alias for batcat
+  file:
+    src: /usr/bin/batcat
+    dest: "{{ ansible_env.HOME }}/.local/bin/bat"
+    state: link
+  when: ansible_os_family == 'Debian'

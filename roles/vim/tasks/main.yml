@@ -3,5 +3,5 @@
 - name: Configure zsh aliases
   template:
     src: vimrc
-    dest: "{{ lookup('env', 'HOME') }}/.vimrc"
+    dest: "{{ ansible_env.HOME }}/.vimrc"
 

@@ -24,7 +24,7 @@
 
 - name: Check if .oh-my-zsh installed
   stat:
-    path: "{{ lookup('env', 'HOME') }}/.oh-my-zsh"
+    path: "{{ ansible_env.HOME }}/.oh-my-zsh"
   become_user: rylev
   become: true
   register: oh_my_zsh
@@ -37,24 +37,24 @@
 - name: Configure zsh
   template:
     src: zshrc
-    dest: "{{ lookup('env', 'HOME') }}/.zshrc"
+    dest: "{{ ansible_env.HOME }}/.zshrc"
 
 - name: ensures .zsh dir exists
   file:
-    path: "{{ lookup('env', 'HOME') }}/.zsh"
+    path: "{{ ansible_env.HOME }}/.zsh"
     state: directory
 
 - name: Configure zsh config
   template:
     src: config
-    dest: "{{ lookup('env', 'HOME') }}/.zsh/config"
+    dest: "{{ ansible_env.HOME }}/.zsh/config"
 
 - name: Configure zsh env
   template:
     src: env
-    dest: "{{ lookup('env', 'HOME') }}/.zsh/env"
+    dest: "{{ ansible_env.HOME }}/.zsh/env"
 
 - name: Configure zsh aliases
   template:
     src: aliases
-    dest: "{{ lookup('env', 'HOME') }}/.zsh/aliases"
+    dest: "{{ ansible_env.HOME }}/.zsh/aliases"

@@ -4,10 +4,12 @@
 ## This file contains all options related to envrionment configuration
 ## This is where environment variables (e.g. PATH) are generally set
 
+export PATH="$HOME/.local/bin:$PATH"
+
 ### Rust
 source $HOME/.cargo/env
 # Put all Rust compilation artifacts in the same directory
-export CARGO_TARGET_DIR=/home/rylev/.cargo_target
+export CARGO_TARGET_DIR=$HOME/.cargo_target
 export CARGO_REGISTRIES_CRATES_IO_PROTOCOL=sparse
 
 export EDITOR="vim"
