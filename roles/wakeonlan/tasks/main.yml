@@ -1,0 +1,19 @@
+---
+
+- name: Install ethtool
+  become: true
+  apt:
+    name: ethtool
+
+- name: Configure wol systemd service
+  become: true
+  template:
+    src: service
+    dest: /etc/systemd/system/wol.service
+
+- name: Start wol systemd service
+  become: true
+  systemd:
+    name: wol
+    state: started
+    enabled: yes

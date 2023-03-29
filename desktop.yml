@@ -33,3 +33,5 @@
       become: true
     - role: nvm
       become: true
+    - role: wakeonlan
+      become: true

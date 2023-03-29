@@ -27,6 +27,7 @@
      - exa
      - ripgrep
      - peco
+     - jq
     state: latest
 
 - name: Install debian specific packages
