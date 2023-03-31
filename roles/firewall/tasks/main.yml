@@ -5,13 +5,19 @@
     name: ufw
     state: present
 
-- name: Allow incoming SSH traffic
+- name: Allow incoming SSH traffic from local network
   ufw:
     rule: allow
     direction: in
     proto: tcp
     port: ssh
     src: 192.168.2.0/24
+
+- name: Allow all traffic from 100.0.0.0/8 (used by tailscale)
+  ufw:
+    rule: allow
+    direction: in
+    src: 100.0.0.0/8
 
 - name: Allow all outgoing traffic
   ufw:

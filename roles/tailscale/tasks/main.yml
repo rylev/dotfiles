@@ -1,0 +1,19 @@
+---
+
+- name: Add key for the tailscale apt repo
+  apt_key:
+    url: https://pkgs.tailscale.com/stable/ubuntu/jammy.noarmor.gpg
+    keyring: /usr/share/keyrings/tailscale-archive-keyring.gpg
+    state: present
+
+- name: Add tailscale apt repo
+  apt_repository:
+    filename: 1password
+    repo: "deb [signed-by=/usr/share/keyrings/tailscale-archive-keyring.gpg] https://pkgs.tailscale.com/stable/ubuntu jammy main"
+    state: present
+
+- name: Install tailscale
+  apt:
+    pkg: tailscale
+    update_cache: yes
+    state: present

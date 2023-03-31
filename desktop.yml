@@ -35,3 +35,5 @@
       become: true
     - role: wakeonlan
       become: true
+    - role: tailscale
+      become: true
