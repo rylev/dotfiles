@@ -14,19 +14,29 @@
     state: present
 
 - name: Configure available keyboard layouts in Gnome
+  become: false
   dconf:
     key: "/org/gnome/desktop/input-sources/sources"
     value: "[('xkb', 'us'), ('xkb', 'de')]"
     state: present
 
 - name: Switch caps lock to being another ctrl
+  become: false
   dconf:
     key: "/org/gnome/desktop/input-sources/xkb-options"
     value: "['caps:ctrl_modifier']"
     state: present
 
 - name: Set to 24 hour clock
+  become: false
   dconf:
     key: "/org/gnome/desktop/interface/clock-format"
     value: "'24h'"
+    state: present
+
+- name: Center new windows
+  become: false
+  dconf:
+    key: "/org/gnome/mutter/center-new-windows"
+    value: "true"
     state: present
