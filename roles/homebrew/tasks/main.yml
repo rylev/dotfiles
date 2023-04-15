@@ -1,0 +1,32 @@
+---
+
+- name: Check if homebrew is installed
+  stat:
+    path: /opt/homebrew/bin/brew
+  register: brew
+
+- name: Install Homebrew
+  shell: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  when: not brew.stat.exists
+
+- name: Put brew on the path
+  shell: (echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> /Users/rylev/.zprofile; eval "$(/opt/homebrew/bin/brew shellenv)"
+  when: not brew.stat.exists
+
+- name: Install common packages
+  package:
+    name:
+     - htop
+     - ncdu
+     - cmake
+     - pkg-config
+     - openssl
+     - vim
+     - nmap
+     - awscli
+     - bat
+     - exa
+     - ripgrep
+     - peco
+     - jq
+    state: latest

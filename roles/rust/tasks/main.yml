@@ -5,10 +5,11 @@
     test -f ~/.cargo/env && . ~/.cargo/env && command -v cargo
   become_user: rylev
   register: cargo_exists
-  changed_when: cargo_exists is failed
+  changed_when: cargo_exists.rc == 1
+  failed_when: cargo_exists.rc > 1
 
 - name: Download installer
-  when: cargo_exists is failed
+  when: cargo_exists is changed
   get_url:
     url: https://sh.rustup.rs
     dest: /tmp/sh.rustup.rs
@@ -16,7 +17,7 @@
     force: 'yes'
 
 - name: Install Rust/Cargo
-  when: cargo_exists is failed
+  when: cargo_exists is changed
   shell: /tmp/sh.rustup.rs -y
   become_user: rylev
 

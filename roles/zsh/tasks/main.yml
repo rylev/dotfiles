@@ -13,25 +13,23 @@
 
 - name: Find current default shell
   shell: sudo grep "^${USER}.*zsh$" /etc/passwd
-  become_user: rylev
   register: default_shell
+  become: true
   changed_when: default_shell.rc == 1
   failed_when: default_shell.rc > 1
 
 - name: Make default shell
   shell: chsh -s $(which zsh)
+  become: true
   when: default_shell.rc == 1
 
 - name: Check if .oh-my-zsh installed
   stat:
     path: "{{ ansible_env.HOME }}/.oh-my-zsh"
-  become_user: rylev
-  become: true
   register: oh_my_zsh
 
 - name: Install oh-my-zsh
   shell: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-  become_user: rylev
   when: not oh_my_zsh.stat.exists
 
 - name: Configure zsh

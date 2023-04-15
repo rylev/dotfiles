@@ -1,0 +1,8 @@
+- name: macOS Playbook Initialization
+  hosts: localhost
+  roles:
+    - role: homebrew
+    - role: git
+    - role: rust
+    - role: zsh
+    - role: vim
