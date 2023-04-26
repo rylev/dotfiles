@@ -31,3 +31,6 @@
      - fclones
      - jql
      - choose
+     - wasm-tools
+     - mdbook
+
